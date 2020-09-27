@@ -134,13 +134,16 @@ def start_cho_han():
                 another = input("Do you want to play again? (yes or no) ")
                 # take choice and pass to the play again function
                 cho_han_play_again(another)
+            else:
+                print("Go home your broke")
         else:
             print(cho_han(0, bet))
             if money > 0:
                 another = input("Do you want to play again? (yes or no) ")
                 # take choice and pass to the play again function
                 cho_han_play_again(another)
-
+            else:
+                print("Go home your broke")
 
 def cho_han_play_again(maybe):
     global money
