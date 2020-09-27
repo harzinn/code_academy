@@ -88,25 +88,31 @@ def coin_play_again(maybe):
     else:
         print("Go home your broke")
 
-def cho_han(choice,bet):
+
+def cho_han(choice, bet):
     global money
     dice1 = random.randint(1, 6)
     dice2 = random.randint(1, 6)
-    bothdice = dice1 + dice2
-    oddoreven = bothdice % 2
-    if choice == oddoreven:
+    both_dice = dice1 + dice2
+    odd_or_even = both_dice % 2
+    if choice == odd_or_even:
         money += bet
-        if oddoreven == 0:
-            return "You win " + str(bet) + " dollars and now have " +str(money) + " total dollars! The results are even! " +str(bothdice)
+        if odd_or_even == 0:
+            return "You win " + str(bet) + " dollars and now have " + str(
+                money) + " total dollars! The results are even! " + str(both_dice)
         else:
-            return "You win " + str(bet) + " dollars and now have " +str(money) + " total dollars! The results are odd! " +str(bothdice)
+            return "You win " + str(bet) + " dollars and now have " + str(
+                money) + " total dollars! The results are odd! " + str(both_dice)
 
     else:
         money -= bet
-        if oddoreven == 0:
-            return "You lose " + str(bet) + " dollars and now have " +str(money) + " total dollars! The results are even! " +str(bothdice)
+        if odd_or_even == 0:
+            return "You lose " + str(bet) + " dollars and now have " + str(
+                money) + " total dollars! The results are even! " + str(both_dice)
         else:
-            return "You lose " + str(bet) + " dollars and now have " +str(money) + " total dollars! The results are even! " +str(bothdice)
+            return "You lose " + str(bet) + " dollars and now have " + str(
+                money) + " total dollars! The results are even! " + str(both_dice)
+
 
 def start_cho_han():
     global money
@@ -126,6 +132,7 @@ def start_cho_han():
             # take choice and pass to the play again function
             cho_han_play_again(another)
 
+
 def cho_han_play_again(maybe):
     global money
     if money > 0:
@@ -137,9 +144,22 @@ def cho_han_play_again(maybe):
         print("Go home your broke")
 
 
+def start_game():
+    print("Which game would you like to play?")
+    game_choice = int(input(("""We currently have Coin-flip and cho-Han available!
+                Press 1 for Coin Flip, or 2 for Cho-Han
+                >> """)))
+    if game_choice == 1:
+        start_coin()
+    elif game_choice == 2:
+        start_cho_han()
+    else:
+        print("Does not compute\n\n")
+        start_game()
+
 
 # Call your game of chance functions here
 
-#start_coin()
-#start_cho_han()
-
+# start_coin()
+# start_cho_han()
+start_game()
