@@ -85,6 +85,7 @@ def coin_play_again(maybe):
             start_coin()
         elif "n" in maybe:
             print("Have a good day! You left with " + str(money) + " dollars")
+            start_game()
     else:
         print("Go home your broke")
 
@@ -117,20 +118,28 @@ def cho_han(choice, bet):
 def start_cho_han():
     global money
     print("Let's play Cho-Han!")
-    bet = int(input("How much would you like to bet?  You currently have " + str(money) + " dollars"))
-    choice = input("Do you bet odd or even?")
-    if "o" in choice:
-        print(cho_han(1, bet))
-        if money > 0:
-            another = input("Do you want to play again? (yes or no) ")
-            # take choice and pass to the play again function
-            cho_han_play_again(another)
-    else:
-        print(cho_han(0, bet))
-        if money > 0:
-            another = input("Do you want to play again? (yes or no) ")
-            # take choice and pass to the play again function
-            cho_han_play_again(another)
+    bet = int(input("How much would you like to bet?  You currently have " + str(money) + " dollars\n"))
+    # Make sure the bet is valid
+    checked = bet_check(bet, money)
+    # If the bet isn't valid, restart the start_coin() function
+    if checked:
+        print("You don't have that much try again\n")
+        start_cho_han()
+    # If the be is valid, continue on
+    elif not checked:
+        choice = input("Do you bet odd or even?")
+        if "o" in choice:
+            print(cho_han(1, bet))
+            if money > 0:
+                another = input("Do you want to play again? (yes or no) ")
+                # take choice and pass to the play again function
+                cho_han_play_again(another)
+        else:
+            print(cho_han(0, bet))
+            if money > 0:
+                another = input("Do you want to play again? (yes or no) ")
+                # take choice and pass to the play again function
+                cho_han_play_again(another)
 
 
 def cho_han_play_again(maybe):
@@ -140,6 +149,7 @@ def cho_han_play_again(maybe):
             start_cho_han()
         elif "n" in maybe:
             print("Have a good day! You left with " + str(money) + " dollars")
+            start_game()
     else:
         print("Go home your broke")
 
@@ -147,12 +157,14 @@ def cho_han_play_again(maybe):
 def start_game():
     print("Which game would you like to play?")
     game_choice = int(input(("""We currently have Coin-flip and cho-Han available!
-                Press 1 for Coin Flip, or 2 for Cho-Han
+                Press 1 for Coin Flip, or 2 for Cho-Han (0 to exit)
                 >> """)))
     if game_choice == 1:
         start_coin()
     elif game_choice == 2:
         start_cho_han()
+    elif game_choice == 0:
+        print("Bye!  You had " + str(money) + " dollars when you left")
     else:
         print("Does not compute\n\n")
         start_game()
