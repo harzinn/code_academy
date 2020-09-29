@@ -145,6 +145,7 @@ def start_cho_han():
             else:
                 print("Go home your broke")
 
+
 def cho_han_play_again(maybe):
     global money
     if money > 0:
@@ -173,8 +174,26 @@ def start_game():
         start_game()
 
 
+def war(bet):
+    global money
+    player = random.randint(1, 10)
+    house = random.randint(1, 10)
+    if player > house:
+        money += bet
+        return "Player wins with " + str(player) + " showing!...House had " + str(house) + " and now has " + str(
+            money) + " money!"
+    elif house > player:
+        money -= bet
+        return "House wins with " + str(house) + " showing!...Player 1 had " + str(player) + " and now has " + str(
+            money) + " money!"
+    else:
+        return "PUSH!!! with " + str(house) + " and " + str(player) + " both being the same!" + " Player now has " + str(
+            money) + " money!"
+
+
 # Call your game of chance functions here
 
 # start_coin()
 # start_cho_han()
-start_game()
+# start_game()
+print(war(50))
