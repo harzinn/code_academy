@@ -187,8 +187,8 @@ def war(bet):
         return "House wins with " + str(house) + " showing!...Player 1 had " + str(player) + " and now has " + str(
             money) + " money!"
     else:
-        return "PUSH!!! with " + str(house) + " and " + str(player) + " both being the same!" + " Player now has " + str(
-            money) + " money!"
+        return "PUSH!!! with " + str(house) + " and " + str(player) + " both being the same!" + " Player now has " + \
+               str(money) + " money!"
 
 
 # Call your game of chance functions here
